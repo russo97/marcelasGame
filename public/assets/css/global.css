@@ -1,3 +1,10 @@
+:root {
+    --background-box-color: #52233f;
+    --background-box-color2: #eec07c;
+    --background-final-color: #51213f;
+    --background-initial-color: #bd6772;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -18,5 +25,6 @@ body {
     position: relative;
     align-items: center;
     justify-content: center;
-    background-color: #f3f3f3;
+    background-color: #51213f;
+    background-image: linear-gradient(to bottom left, #bd6772 40%, #51213f);
 }
