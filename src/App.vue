@@ -60,9 +60,9 @@ export default {
 
   .screen-option {
     display: flex;
+    position: relative;
     align-items: center;
     background-size: cover;
-    /* mix-blend-mode: darken; */
     justify-content: center;
     transition: all 500ms ease;
     background-position: center;
@@ -79,8 +79,6 @@ export default {
   .screen-option.b,
   .screen-option.d {
     background-size: cover;
-    background-blend-mode: multiply;
-    /* background-image: url(https://instagram.frec36-1.fna.fbcdn.net/v/t51.2885-15/e35/s1080x1080/58409452_2174875615914463_5390018402187845561_n.jpg?_nc_ht=instagram.frec36-1.fna.fbcdn.net&_nc_cat=107&_nc_ohc=2s_mrz9uJL4AX_6v_xm&oh=2666f50938f4c71cacf3ca5c255ae7c3&oe=5F650BF1); */
   }
 
   .screen-option.b span,
@@ -102,6 +100,8 @@ export default {
 
   .screen-option.b {
     grid-area: B;
+    background-position: 52% center;
+    background-image: url('assets/images/profile_pic_b.jpg');
   }
 
   .screen-option.c {
@@ -110,9 +110,36 @@ export default {
 
   .screen-option.d {
     grid-area: D;
+    background-position: 17% center;
+    background-image: url('assets/images/profile_pic_d.jpg');
   }
 
   .screen-option.e {
     grid-area: E;
+  }
+
+  .screen-option.b::before,
+  .screen-option.d::before {
+    content: '';
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* filter: drop-shadow(0 0 4px purple); */
+    background-image: url('assets/images/heart_icon.png');
+  }
+
+  .screen-option.d::before {
+    top: 30px;
+    left: -45px;
+    transform: rotate(-20deg);
+  }
+
+  .screen-option.b::before {
+    bottom: 10px;
+    right: -35px;
+    transform: rotate(20deg);
   }
 </style>
