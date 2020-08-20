@@ -72,9 +72,19 @@ export default {
 
   .screen-option span {
     width: 100%;
-    text-align:  center;
-    font-family: Consolas;
+    height: 100%;
+    display: flex;
+    color: transparent;
+    font-size: 5rem;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background-size: cover; */
+    background-image: url(https://static.vecteezy.com/system/resources/thumbnails/000/206/354/small/5-07-01.jpg);
     font-family: 'Bangers', cursive;
+    -webkit-background-clip: text;
+            background-clip: text;
   }
 
   .screen-option.a {
