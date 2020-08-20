@@ -2,7 +2,7 @@
   <div id="app">
     <div id="screen">
       <div class="screen-option" :class="grid_areas[index]" :key="index" v-for="(curr_word, index) in containers_words">
-        <span>{{curr_word}}</span>
+        <span v-if="curr_word">{{curr_word}}</span>
       </div>
     </div>
   </div>
@@ -74,24 +74,7 @@ export default {
     width: 100%;
     text-align:  center;
     font-family: Consolas;
-  }
-
-  .screen-option.b,
-  .screen-option.d {
-    background-size: cover;
-  }
-
-  .screen-option.b span,
-  .screen-option.d span {
-    width: 1px;
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    font-family: Consolas, monospace;
-  }
-
-  .screen-option:hover,
-  .screen-option:active {
-    background-blend-mode: unset;
+    font-family: 'Bangers', cursive;
   }
 
   .screen-option.a {

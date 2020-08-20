@@ -1,4 +1,4 @@
-# marcelasgame
+# Marcela's Game
 
 ## Project setup
 ```
