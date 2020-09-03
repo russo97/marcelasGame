@@ -23,7 +23,7 @@ export default {
     };
   },
 
-  mwthods: {},
+  methods: {},
 
   computed: {},
 
@@ -36,7 +36,7 @@ export default {
     width: 90%;
     height: 400px;
     max-width: 400px;
-    padding: 2px;
+    box-shadow: 0px -2px 5px 2px #b15166;
   }
 
   #app #screen {
@@ -109,6 +109,7 @@ export default {
 
   .screen-option.e {
     grid-area: E;
+    cursor: pointer;
   }
 
   .screen-option.b::before,
@@ -120,7 +121,6 @@ export default {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* filter: drop-shadow(0 0 4px purple); */
     background-image: url('assets/images/heart_icon.png');
   }
 
