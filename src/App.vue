@@ -1,9 +1,22 @@
 <template>
   <div id="app">
-    <div id="screen">
-      <div class="screen-option" :class="grid_areas[index]" :key="index" v-for="(curr_word, index) in containers_words">
-        <span v-if="curr_word">{{curr_word}}</span>
+    <div id="screen" :class="{ 'gameRunning': gameRunning }">
+      <div
+        :key="index"
+        class="screen-option"
+        :class="grid_areas[index]"
+        @click="handleGameToggle(grid_areas[index])"
+        v-for="(curr_word, index) in containers_words">
+        <span v-if="curr_word">
+          {{curr_word}}
+        </span>
       </div>
+    </div>
+
+    <div
+      id="canvasContainer"
+      :class="{ 'gameRunning': gameRunning }">
+      <canvas  id="canvasScreen" ref="screen"></canvas>
     </div>
   </div>
 </template>
@@ -18,12 +31,19 @@ export default {
 
   data() {
     return {
+      context: null,
+      gameRunning: false,
       grid_areas: ['a', 'b', 'c', 'd', 'e'],
       containers_words: ['Marcela', '', 'Acioli', '', 'play']
     };
   },
 
-  methods: {},
+  methods: {
+    handleGameToggle (area) {
+      if (area !== 'e') return;
+      this.gameRunning = !this.gameRunning;
+    }
+  },
 
   computed: {},
 
@@ -36,6 +56,9 @@ export default {
     width: 90%;
     height: 400px;
     max-width: 400px;
+    position: relative;
+    -webkit-perspective: 800px;
+            perspective: 800px;
     box-shadow: 0px -2px 5px 2px #b15166;
   }
 
@@ -43,8 +66,6 @@ export default {
     width: 100%;
     height: 100%;
     padding: 4px;
-    width: -moz-available;
-    width: -webkit-fill-available;
     display: grid;
     grid-gap: 4px;
     grid-template-areas: 
@@ -54,8 +75,17 @@ export default {
       'D D E E B B'
       'D D C C C C'
       'D D C C C C';
+    width: -moz-available;
+    width: -webkit-fill-available;
+    transform-style: preserve-3d;
     grid-auto-columns: minmax(0px, 100%);
+    transition: all 400ms ease;
+    backface-visibility: hidden;
     background-color: var(--background-box-color2);
+  }
+
+  #app #screen.gameRunning {
+    transform: rotateY(180deg);
   }
 
   .screen-option {
@@ -134,5 +164,32 @@ export default {
     bottom: 10px;
     right: -35px;
     transform: rotate(20deg);
+  }
+
+
+
+
+  #canvasContainer {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: red;
+    position: absolute;
+    transition: all 400ms ease;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+  }
+
+  #canvasContainer canvas {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+
+  #canvasContainer.gameRunning {
+    transform: rotateY(360deg);
   }
 </style>
