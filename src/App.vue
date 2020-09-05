@@ -41,11 +41,16 @@ export default {
   methods: {
     handleGameToggle (area) {
       if (area !== 'e') return;
+
       this.gameRunning = !this.gameRunning;
     }
   },
 
   computed: {},
+
+  mounted() {
+    this.context = this.$refs.screen.getContext('2d');
+  },
 
   watch: {}
 }
