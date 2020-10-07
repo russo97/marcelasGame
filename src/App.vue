@@ -11,7 +11,6 @@
     <div
       id="canvasContainer"
       :class="runningClass">
-      <canvas  id="canvasScreen" ref="screen"></canvas>
     </div>
   </div>
 </template>
@@ -28,7 +27,6 @@ export default {
 
   data() {
     return {
-      context: null,
       gameRunning: false,
       grid_areas: ['a', 'b', 'c', 'd', 'e']
     };
@@ -50,9 +48,7 @@ export default {
     }
   },
 
-  mounted() {
-    this.context = this.$refs.screen.getContext('2d');
-  },
+  mounted() {},
 
   watch: {}
 }
