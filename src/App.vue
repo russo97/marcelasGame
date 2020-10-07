@@ -1,26 +1,16 @@
 <template>
   <div id="app">
-    <div id="screen" :class="{ 'gameRunning': gameRunning }">
-      <!-- <div
-        :key="index"
-        class="screen-option"
-        :class="grid_areas[index]"
-        @click="handleGameToggle(grid_areas[index])"
-        v-for="(curr_word, index) in containers_words">
-        <span v-if="curr_word">
-          {{curr_word}}
-        </span>
-      </div> -->
+    <div id="screen" :class="runningClass">
       <GridBlock
-        :key="curr_word"
-        :label="curr_word"
-        :class="grid_areas[index]"
-        v-for="(curr_word, index) in containers_words" />
+        :key="index"
+        @play="playGame(index)"
+        :area="grid_areas[index]"
+        v-for="(curr_word, index) in grid_areas" />
     </div>
 
     <div
       id="canvasContainer"
-      :class="{ 'gameRunning': gameRunning }">
+      :class="runningClass">
       <canvas  id="canvasScreen" ref="screen"></canvas>
     </div>
   </div>
@@ -40,20 +30,25 @@ export default {
     return {
       context: null,
       gameRunning: false,
-      grid_areas: ['a', 'b', 'c', 'd', 'e'],
-      containers_words: ['Marcela', '', 'Acioli', '', 'play']
+      grid_areas: ['a', 'b', 'c', 'd', 'e']
     };
   },
 
   methods: {
-    handleGameToggle (area) {
-      if (area !== 'e') return;
+    playGame (index) {
+      const { grid_areas } = this;
 
-      this.gameRunning = !this.gameRunning;
+      this.gameRunning = grid_areas[index] === 'e';
     }
   },
 
-  computed: {},
+  computed: {
+    runningClass () {
+      const { gameRunning } = this;
+
+      return { gameRunning };
+    }
+  },
 
   mounted() {
     this.context = this.$refs.screen.getContext('2d');
@@ -87,9 +82,8 @@ export default {
       'D D E E B B'
       'D D C C C C'
       'D D C C C C';
-    width: -moz-available;
-    width: -webkit-fill-available;
     transform-style: preserve-3d;
+    grid-auto-rows: minmax(0px, 100%);
     grid-auto-columns: minmax(0px, 100%);
     transition: all 400ms ease;
     backface-visibility: hidden;

@@ -1,6 +1,11 @@
 <template>
-  <div class="screen-option">
-      {{ index }}
+  <div
+    :class="area"
+    class="screen-option"
+    @click="$emit('play')">
+      <span v-if="area === 'e'">
+          Play
+      </span>
   </div>
 </template>
 
@@ -8,7 +13,7 @@
 export default {
     name: 'GridBlock',
 
-    props: ['index']
+    props: ['startGame', 'area']
 }
 </script>
 
