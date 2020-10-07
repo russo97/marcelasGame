@@ -9,7 +9,7 @@
     </div>
 
     <div
-      id="canvasContainer"
+      id="playingArea"
       :class="runningClass">
     </div>
   </div>
@@ -78,11 +78,11 @@ export default {
       'D D E E B B'
       'D D C C C C'
       'D D C C C C';
+    transition: all 400ms ease;
+    backface-visibility: hidden;
     transform-style: preserve-3d;
     grid-auto-rows: minmax(0px, 100%);
     grid-auto-columns: minmax(0px, 100%);
-    transition: all 400ms ease;
-    backface-visibility: hidden;
     background-color: var(--background-box-color2);
   }
 
@@ -93,7 +93,7 @@ export default {
 
 
 
-  #canvasContainer {
+  #playingArea {
     top: 0px;
     left: 0px;
     width: 100%;
@@ -105,15 +105,7 @@ export default {
     backface-visibility: hidden;
   }
 
-  #canvasContainer canvas {
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-  }
-
-  #canvasContainer.gameRunning {
+  #playingArea.gameRunning {
     transform: rotateY(360deg);
   }
 </style>

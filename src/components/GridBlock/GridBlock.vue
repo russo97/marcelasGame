@@ -38,13 +38,13 @@ export default {
     font-size: 5rem;
     align-items: center;
     justify-content: center;
-    background-repeat: no-repeat;
     background-position: center;
     /* background-size: cover; */
-    background-image: url(https://static.vecteezy.com/system/resources/thumbnails/000/206/354/small/5-07-01.jpg);
-    font-family: 'Bangers', cursive;
+    background-repeat: no-repeat;
     -webkit-background-clip: text;
             background-clip: text;
+    font-family: 'Bangers', cursive;
+    background-image: url('../../assets/images/heartbg.jpg');
   }
 
   .screen-option.a {
