@@ -49,6 +49,8 @@ export default {
 
   .screen-option.a {
     grid-area: A;
+    background-position: center 60%;
+    background-image: url('../../assets/images/profile_pic_a.jpg');
   }
 
   .screen-option.b {
@@ -59,6 +61,8 @@ export default {
 
   .screen-option.c {
     grid-area: C;
+    background-position: center 30%;
+    background-image: url('../../assets/images/profile_pic_c.jpg');
   }
 
   .screen-option.d {
