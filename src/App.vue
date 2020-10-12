@@ -11,18 +11,26 @@
     <div
       id="playingArea"
       :class="runningClass">
+      <div class="playingSpacer">
+        <TileBlock
+          :key="div"
+          :index="div"
+          v-for="div in 25" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import GridBlock from './components/GridBlock/GridBlock';
+import TileBlock from './components/TileBlock/TileBlock';
 
 export default {
   name: 'App',
 
   components: {
-    GridBlock
+    GridBlock,
+    TileBlock
   },
 
   data() {
@@ -98,8 +106,10 @@ export default {
     left: 0px;
     width: 100%;
     height: 100%;
-    background: red;
+    display: flex;
     position: absolute;
+    align-items: center;
+    justify-content: center;
     transition: all 400ms ease;
     transform: rotateY(180deg);
     backface-visibility: hidden;
@@ -107,5 +117,13 @@ export default {
 
   #playingArea.gameRunning {
     transform: rotateY(360deg);
+  }
+
+  .playingSpacer {
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    display: grid;
+    grid-gap: 3px;
+    grid-template: repeat(5, 1fr) / repeat(5, 1fr);
   }
 </style>

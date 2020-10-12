@@ -13,7 +13,7 @@
 export default {
     name: 'GridBlock',
 
-    props: ['startGame', 'area']
+    props: ['area']
 }
 </script>
 
