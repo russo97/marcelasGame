@@ -17,7 +17,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
   .screen-option {
     display: flex;
     position: relative;
@@ -28,75 +28,74 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
     background-color: #b15166;
-  }
 
-  .screen-option span {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    color: transparent;
-    font-size: 5rem;
-    align-items: center;
-    justify-content: center;
-    background-position: center;
-    /* background-size: cover; */
-    background-repeat: no-repeat;
-    -webkit-background-clip: text;
-            background-clip: text;
-    font-family: 'Bangers', cursive;
-    background-image: url('../../assets/images/heartbg.jpg');
-  }
+    &.a {
+      grid-area: A;
+      background-position: center 60%;
+      background-image: url('../../assets/images/profile_pic_a.jpg');
+    }
 
-  .screen-option.a {
-    grid-area: A;
-    background-position: center 60%;
-    background-image: url('../../assets/images/profile_pic_a.jpg');
-  }
+    &.b {
+      grid-area: B;
+      background-position: 52% center;
+      background-image: url('../../assets/images/profile_pic_b.jpg');
 
-  .screen-option.b {
-    grid-area: B;
-    background-position: 52% center;
-    background-image: url('../../assets/images/profile_pic_b.jpg');
-  }
+      &::before {
+        bottom: 10px;
+        right: -35px;
+        transform: rotate(20deg);
+      }
+    }
 
-  .screen-option.c {
-    grid-area: C;
-    background-position: center 30%;
-    background-image: url('../../assets/images/profile_pic_c.jpg');
-  }
+    &.c {
+      grid-area: C;
+      background-position: center 30%;
+      background-image: url('../../assets/images/profile_pic_c.jpg');
+    }
 
-  .screen-option.d {
-    grid-area: D;
-    background-position: 17% center;
-    background-image: url('../../assets/images/profile_pic_d.jpg');
-  }
+    &.d {
+      grid-area: D;
+      background-position: 17% center;
+      background-image: url('../../assets/images/profile_pic_d.jpg');
 
-  .screen-option.e {
-    grid-area: E;
-    cursor: pointer;
-  }
+      &::before {
+        top: 30px;
+        left: -45px;
+        transform: rotate(-20deg);
+      }
+    }
 
-  .screen-option.b::before,
-  .screen-option.d::before {
-    content: '';
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-image: url('../../assets/images/heart_icon.png');
-  }
+    &.e {
+      grid-area: E;
+      cursor: pointer;
+    }
 
-  .screen-option.d::before {
-    top: 30px;
-    left: -45px;
-    transform: rotate(-20deg);
-  }
+    &.b::before,
+    &.d::before {
+      content: '';
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('../../assets/images/heart_icon.png');
+    }
 
-  .screen-option.b::before {
-    bottom: 10px;
-    right: -35px;
-    transform: rotate(20deg);
+    span {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      color: transparent;
+      font-size: 5rem;
+      align-items: center;
+      justify-content: center;
+      background-position: center;
+      background-repeat: no-repeat;
+      -webkit-background-clip: text;
+              background-clip: text;
+      font-family: 'Bangers', cursive;
+      background-image: url('../../assets/images/heartbg.jpg');
+    }
   }
 </style>

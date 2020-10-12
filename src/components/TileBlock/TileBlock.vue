@@ -12,9 +12,9 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
  .playingBlock {
     cursor: pointer;
-    background: purple;
+    background: #b15166;
   }
 </style>
