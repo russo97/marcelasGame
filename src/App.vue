@@ -15,7 +15,7 @@
         <TileBlock
           :key="div"
           :index="div"
-          v-for="div in 25" />
+          v-for="div in tiles" />
       </div>
     </div>
   </div>
@@ -35,6 +35,8 @@ export default {
 
   data() {
     return {
+      tiles: [],
+      tilesCount: 25,
       gameRunning: false,
       grid_areas: ['a', 'b', 'c', 'd', 'e']
     };
@@ -45,6 +47,12 @@ export default {
       const { grid_areas } = this;
 
       this.gameRunning = grid_areas[index] === 'e';
+    },
+
+    populateTiles () {
+      const { tilesCount } = this;
+
+      this.tiles = Array.from({ length: tilesCount }, (_, i) => i);
     }
   },
 
@@ -56,7 +64,9 @@ export default {
     }
   },
 
-  mounted() {},
+  mounted() {
+    this.populateTiles();
+  },
 
   watch: {}
 }
