@@ -1,7 +1,7 @@
 <template>
   <div class="user_percentage">
     <div class="percentage_box">
-      <div class="percentage_bar"></div>
+      <div class="percentage_bar" :style="percentageWidth"></div>
     </div>
   </div>
 </template>
@@ -10,8 +10,20 @@
 export default {
   name: 'TilesPercentage',
 
+  props: ['total', 'current'],
+
   data () {
     return {};
+  },
+
+  computed: {
+    percentageWidth () {
+      const { total, current } = this;
+
+      return {
+        width: `${current * 100 / total}%`
+      };
+    }
   }
 }
 </script>
@@ -32,6 +44,15 @@ export default {
       position: relative;
       background: #bd6772;
       @include border-radius(3px);
+
+      .percentage_bar {
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        position: absolute;
+        background: purple;
+        transition: width 200ms ease-in;
+      }
     }
   }
 </style>
