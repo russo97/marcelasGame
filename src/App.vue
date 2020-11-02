@@ -17,6 +17,8 @@
           :index="div"
           v-for="div in tiles" />
       </div>
+
+      <TilesPercentage />
     </div>
   </div>
 </template>
@@ -24,13 +26,15 @@
 <script>
 import GridBlock from './components/GridBlock/GridBlock';
 import TileBlock from './components/TileBlock/TileBlock';
+import TilesPercentage from './components/TilesPercentage/TilesPercentage';
 
 export default {
   name: 'App',
 
   components: {
     GridBlock,
-    TileBlock
+    TileBlock,
+    TilesPercentage
   },
 
   data() {
