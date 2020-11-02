@@ -18,16 +18,16 @@ export default {
 </script>
 
 <style lang="scss">
+  @import '../../../public/assets/scss/global.scss';
+
   .screen-option {
-    display: flex;
     position: relative;
-    align-items: center;
     background-size: cover;
-    justify-content: center;
     transition: all 500ms ease;
     background-position: center;
     background-repeat: no-repeat;
     background-color: #b15166;
+    @extend %flex-center;
 
     &.a {
       grid-area: A;
@@ -85,11 +85,9 @@ export default {
     span {
       width: 100%;
       height: 100%;
-      display: flex;
-      color: transparent;
       font-size: 5rem;
-      align-items: center;
-      justify-content: center;
+      color: transparent;
+      @extend %flex-center;
       background-position: center;
       background-repeat: no-repeat;
       -webkit-background-clip: text;

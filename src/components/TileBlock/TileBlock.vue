@@ -27,7 +27,9 @@ export default {
 </script>
 
 <style lang="scss">
- .playingBlock {
+	@import '../../../public/assets/scss/global.scss';
+
+	.playingBlock {
     cursor: pointer;
     position: relative;
     background: #b15166;
@@ -81,11 +83,7 @@ export default {
     }
   }
 
-  @keyframes colorchange {
-      100% { opacity: 0; }
-  }
-
-  @-webkit-keyframes colorchange {
-      100% { opacity: 0; }
+  @include keyframes (colorchange) {
+    100% { opacity: 0; }
   }
 </style>

@@ -11,3 +11,11 @@
     align-items: center;
     justify-content: center;
 }
+
+@mixin keyframes ($keyframename) {
+    @keyframes #{$keyframename}         { @content; }
+    @-o-keyframes #{$keyframename}      { @content; }
+    @-ms-keyframes #{$keyframename}     { @content; }
+    @-moz-keyframes #{$keyframename}    { @content; }
+    @-webkit-keyframes #{$keyframename} { @content; }
+}

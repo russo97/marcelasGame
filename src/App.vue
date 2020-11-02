@@ -77,6 +77,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  @import '../public/assets/scss/global.scss';
+
   #app {
     width: 90%;
     height: 400px;
@@ -116,10 +118,8 @@ export default {
       left: 0px;
       width: 100%;
       height: 100%;
-      display: flex;
       position: absolute;
-      align-items: center;
-      justify-content: center;
+      @extend %flex-center;
       transition: all 400ms ease;
       transform: rotateY(180deg);
       backface-visibility: hidden;

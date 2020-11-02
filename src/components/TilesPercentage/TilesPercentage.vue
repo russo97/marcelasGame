@@ -23,10 +23,8 @@ export default {
     width: 100%;
     height: 15px;
     bottom: -20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: absolute;
+    @extend %flex-center;
 
     .percentage_box {
       width: 97%;
