@@ -45,7 +45,7 @@ export default {
       width: 97%;
       height: 5px;
       position: relative;
-      background: #bd6772;
+      background: #51213f;
       @include border-radius(3px);
       @extend %flex-center-space-evenly;
 
@@ -53,10 +53,10 @@ export default {
         top: 0px;
         left: 0px;
         height: 100%;
-        transition: all 200ms ease-in;
+        transition: all 400ms ease-in;
 
         &.filled {
-          background-color: purple;
+          background-color: #b15166;
         }
       }
     }

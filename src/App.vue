@@ -18,14 +18,17 @@
           v-for="div in tiles" />
       </div>
 
-      <TilesPercentage :current="15" :total="tilesCount" />
+      <TilesPercentage :current="0" :total="tilesCount" />
     </div>
+
+    <HowToPlay :playing="gameRunning" />
   </div>
 </template>
 
 <script>
 import GridBlock from './components/GridBlock/GridBlock';
 import TileBlock from './components/TileBlock/TileBlock';
+import HowToPlay from './components/HowToPlay/HowToPlay';
 import TilesPercentage from './components/TilesPercentage/TilesPercentage';
 
 export default {
@@ -34,6 +37,7 @@ export default {
   components: {
     GridBlock,
     TileBlock,
+    HowToPlay,
     TilesPercentage
   },
 
