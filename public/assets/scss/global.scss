@@ -6,10 +6,20 @@
             border-radius: $radius;
 }
 
-%flex-center {
+%flex {
     display: flex;
+}
+
+%flex-center {
+    @extend %flex;
     align-items: center;
     justify-content: center;
+}
+
+%flex-center-space-evenly {
+    @extend %flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 @mixin keyframes ($keyframename) {

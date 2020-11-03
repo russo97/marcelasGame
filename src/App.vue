@@ -18,7 +18,7 @@
           v-for="div in tiles" />
       </div>
 
-      <TilesPercentage :current="12" :total="tilesCount" />
+      <TilesPercentage :current="15" :total="tilesCount" />
     </div>
   </div>
 </template>

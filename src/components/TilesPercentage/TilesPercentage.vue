@@ -1,7 +1,12 @@
 <template>
   <div class="user_percentage">
     <div class="percentage_box">
-      <div class="percentage_bar" :style="percentageWidth"></div>
+      <div
+        :key="index"
+        class="percentage_bar"
+        :style="percentageWidth"
+        :class="{ filled: item <= current }"
+        v-for="(item, index) in total"></div>
     </div>
   </div>
 </template>
@@ -18,11 +23,9 @@ export default {
 
   computed: {
     percentageWidth () {
-      const { total, current } = this;
+      const { total } = this;
 
-      return {
-        width: `${current * 100 / total}%`
-      };
+      return { width: `${100 / total}%` };
     }
   }
 }
@@ -44,14 +47,17 @@ export default {
       position: relative;
       background: #bd6772;
       @include border-radius(3px);
+      @extend %flex-center-space-evenly;
 
       .percentage_bar {
         top: 0px;
         left: 0px;
         height: 100%;
-        position: absolute;
-        background: purple;
-        transition: width 200ms ease-in;
+        transition: all 200ms ease-in;
+
+        &.filled {
+          background-color: purple;
+        }
       }
     }
   }
