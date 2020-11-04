@@ -2,6 +2,13 @@
   <div id="howtoplay" :class="{ hide: !playing }">
     <fieldset>
       <legend>Como jogar</legend>
+
+      <p>
+        Visualize a sequência que será exibida e refaça na mesma ordem, desafie
+        sua mente e chegue o mais longe que puder.
+      </p>
+
+      <button>estou pronto &gt;</button>
     </fieldset>
   </div>
 </template>
@@ -10,38 +17,66 @@
 export default {
   name: "HowToPlay",
 
-  props: ['playing']
-}
+  props: ["playing"]
+};
 </script>
 
 <style scoped lang="scss">
-  @import '../../../public/assets/scss/global.scss';
+@import "../../../public/assets/scss/global.scss";
 
-  #howtoplay {
-    top: 0px;
-    left: 0px;
-    opacity: 1;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    @extend %flex-center;
-    transition: top 600ms ease-in 300ms;
-    background-color: rgba(0, 0, 0, .3);
+#howtoplay {
+  top: 0px;
+  left: 0px;
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  @extend %flex-center;
+  transition: top 600ms ease-in 300ms;
+  background-color: rgba(0, 0, 0, 0.7);
 
-    &.hide {
-      top: 100%;
+  &.hide {
+    top: 100%;
+  }
+
+  fieldset {
+    width: 90%;
+    height: 50%;
+    border: none;
+
+    legend {
+      color: #fff;
+      font-size: 20pt;
+      padding: 5px 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-family: "Amatic SC", cursive;
     }
 
-    fieldset {
-      width: 90%;
-      height: 50%;
-      border: solid 1px white;
+    p {
+      color: #fff;
+      font-size: 12pt;
+      text-indent: 1em;
+      margin-top: 15px;
+      padding: 15px 5px;
+      line-height: 1.5em;
+      text-align: justify;
+      // text-transform: uppercase;
+      font-family: 'Overlock', cursive;
+    }
 
-      legend {
-        font-size: 15pt;
-        font-family: 'Open Sans';
-        text-transform: uppercase;
-      }
+    button {
+      width: auto;
+      border: none;
+      float: right;
+      color: #fff;
+      cursor: pointer;
+      background: none;
+      font-size: 13pt;
+      margin-top: 15px;
+      letter-spacing: 1px;
+      font-family: "Amatic SC", cursive;
     }
   }
+}
 </style>
