@@ -8,7 +8,8 @@
         sua mente e chegue o mais longe que puder.
       </p>
 
-      <button>estou pronto &gt;</button>
+      <button
+        @click="readyToPlay">estou pronto &gt;</button>
     </fieldset>
   </div>
 </template>
@@ -17,7 +18,13 @@
 export default {
   name: "HowToPlay",
 
-  props: ["playing"]
+  props: ["playing"],
+
+  methods: {
+    readyToPlay () {
+      this.$emit('readytoplay');
+    }
+  }
 };
 </script>
 
@@ -32,11 +39,12 @@ export default {
   height: 100%;
   position: absolute;
   @extend %flex-center;
-  transition: top 600ms ease-in 300ms;
+  transition: transform 400ms ease;
   background-color: rgba(0, 0, 0, 0.7);
+  backface-visibility: hidden;
 
   &.hide {
-    top: 100%;
+    transform: rotateY(-180deg);
   }
 
   fieldset {

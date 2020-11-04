@@ -21,11 +21,13 @@
       <TilesPercentage :current="0" :total="tilesCount" />
     </div>
 
-    <HowToPlay :playing="gameRunning" />
+    <HowToPlay v-if="!hideHowToPlay" @readytoplay="toggleHTP" :playing="gameRunning" />
   </div>
 </template>
 
 <script>
+import random from './utils/random';
+
 import GridBlock from './components/GridBlock/GridBlock';
 import TileBlock from './components/TileBlock/TileBlock';
 import HowToPlay from './components/HowToPlay/HowToPlay';
@@ -46,6 +48,9 @@ export default {
       tiles: [],
       tilesCount: 25,
       gameRunning: false,
+      currentSequence: [],
+      hideHowToPlay: false,
+      currentSequenceLength: 0,
       grid_areas: ['a', 'b', 'c', 'd', 'e']
     };
   },
@@ -61,6 +66,24 @@ export default {
       const { tilesCount } = this;
 
       this.tiles = Array.from({ length: tilesCount }, (_, i) => i);
+    },
+
+    toggleHTP () {
+      const { hideHowToPlay, increaseCurrentSequenceLength } = this;
+
+      this.hideHowToPlay = !hideHowToPlay;
+
+      increaseCurrentSequenceLength();
+    },
+
+    increaseCurrentSequenceLength () {
+      this.currentSequenceLength++;
+    },
+
+    generateNewSequence (len) {
+      const { tilesCount } = this;
+
+      return Array.from({ length: len }, () => random(tilesCount));
     }
   },
 
@@ -76,7 +99,15 @@ export default {
     this.populateTiles();
   },
 
-  watch: {}
+  watch: {
+    currentSequenceLength (current) {
+      if (current) {
+        this.currentSequence = this.generateNewSequence(current);
+      }
+    },
+
+    currentSequence () {}
+  }
 }
 </script>
 
