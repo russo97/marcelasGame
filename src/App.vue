@@ -13,9 +13,11 @@
       :class="runningClass">
       <div class="playingSpacer">
         <TileBlock
-          :key="div"
-          :index="div"
-          v-for="div in tiles" />
+          :key="tile.index"
+          :index="tile.index"
+          :active="tile.active"
+          v-model="tile.active"
+          v-for="tile in tiles" />
       </div>
 
       <TilesPercentage :current="0" :total="tilesCount" />
@@ -50,6 +52,7 @@ export default {
       gameRunning: false,
       currentSequence: [],
       hideHowToPlay: false,
+      tilesShowSequence: null,
       currentSequenceLength: 0,
       grid_areas: ['a', 'b', 'c', 'd', 'e']
     };
@@ -65,7 +68,9 @@ export default {
     populateTiles () {
       const { tilesCount } = this;
 
-      this.tiles = Array.from({ length: tilesCount }, (_, i) => i);
+      this.tiles = Array.from({ length: tilesCount }, (_, i) => ({
+        index: i, active: 0
+      }));
     },
 
     toggleHTP () {
@@ -80,10 +85,30 @@ export default {
       this.currentSequenceLength++;
     },
 
-    generateNewSequence (len) {
-      const { tilesCount } = this;
+    generateNewSequence (length) {
+      const { randomTileIndex } = this;
 
-      return Array.from({ length: len }, () => random(tilesCount));
+      return Array.from({ length }, () => randomTileIndex);
+    },
+
+    startShowTilesSequence () {
+      let currIndex = 0;
+
+      const { currentSequence, currentSequenceLength, stopShowTilesSequence, tiles } = this;
+
+      this.tilesShowSequence = setInterval(() => {
+        if (currIndex >= currentSequenceLength) {
+          return stopShowTilesSequence();
+        }
+
+        let currTile = currentSequence[currIndex++];
+
+        tiles[currTile].active = 1;
+      }, 1000);
+    },
+
+    stopShowTilesSequence () {
+      clearInterval(this.tilesShowSequence);
     }
   },
 
@@ -92,6 +117,12 @@ export default {
       const { gameRunning } = this;
 
       return { gameRunning };
+    },
+
+    randomTileIndex () {
+      const { tilesCount } = this;
+
+      return random(tilesCount);
     }
   },
 
@@ -106,7 +137,9 @@ export default {
       }
     },
 
-    currentSequence () {}
+    currentSequence (arr) {
+      arr.length && this.startShowTilesSequence();
+    }
   }
 }
 </script>
