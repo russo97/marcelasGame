@@ -1,5 +1,5 @@
 <template>
-  <div class="playingBlock" :class="{ showing }" @click="showing = !showing">
+  <div class="playingBlock" :class="{ showing }" @click="tileClick">
     <!-- {{ index }} -->
   </div>
 </template>
@@ -13,6 +13,12 @@ export default {
   data () {
     return {
       showing: false
+    }
+  },
+
+  methods: {
+    tileClick () {
+      this.$emit('tileclick', this.index);
     }
   },
 

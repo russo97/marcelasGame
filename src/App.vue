@@ -17,6 +17,7 @@
           :index="tile.index"
           :active="tile.active"
           v-model="tile.active"
+          @tileclick="tileReceiveAClick"
           v-for="tile in tiles" />
       </div>
 
@@ -109,6 +110,10 @@ export default {
 
     stopShowTilesSequence () {
       clearInterval(this.tilesShowSequence);
+    },
+
+    tileReceiveAClick (index) {
+      console.log(index);
     }
   },
 
