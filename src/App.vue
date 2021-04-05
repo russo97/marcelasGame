@@ -31,10 +31,10 @@
 <script>
 import random from './utils/random';
 
-import GridBlock from './components/GridBlock/GridBlock';
-import TileBlock from './components/TileBlock/TileBlock';
-import HowToPlay from './components/HowToPlay/HowToPlay';
-import TilesPercentage from './components/TilesPercentage/TilesPercentage';
+import GridBlock from './components/GridBlock';
+import TileBlock from './components/TileBlock';
+import HowToPlay from './components/HowToPlay';
+import TilesPercentage from './components/TilesPercentage';
 
 export default {
   name: 'App',
@@ -87,9 +87,13 @@ export default {
     },
 
     generateNewSequence (length) {
-      const { randomTileIndex } = this;
+      const { tilesCount } = this;
 
-      return Array.from({ length }, () => randomTileIndex);
+      return Array.from({ length }, () => random(tilesCount));
+    },
+
+    clearPreviousSequence () {
+      this.currentSequence = [];
     },
 
     startShowTilesSequence () {
@@ -109,7 +113,10 @@ export default {
     },
 
     stopShowTilesSequence () {
+      this.clearPreviousSequence();
       clearInterval(this.tilesShowSequence);
+
+      setTimeout(() => this.increaseCurrentSequenceLength(), 3000);
     },
 
     tileReceiveAClick (index) {
@@ -127,7 +134,7 @@ export default {
     randomTileIndex () {
       const { tilesCount } = this;
 
-      return random(tilesCount);
+      return random(0, tilesCount);
     }
   },
 
