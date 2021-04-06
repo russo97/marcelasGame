@@ -12,28 +12,26 @@
 </template>
 
 <script>
-export default {
-  name: 'TilesPercentage',
+  export default {
+    name: 'TilesPercentage',
 
-  props: ['total', 'current'],
+    props: ['total', 'current'],
 
-  data () {
-    return {};
-  },
+    data () {
+      return {};
+    },
 
-  computed: {
-    percentageWidth () {
-      const { total } = this;
+    computed: {
+      percentageWidth () {
+        const { total } = this;
 
-      return { width: `${100 / total}%` };
+        return { width: `${100 / total}%` };
+      }
     }
   }
-}
 </script>
 
 <style lang="scss">
-  @import '../../../public/assets/scss/global.scss';
-
   .user_percentage {
     width: 100%;
     height: 15px;

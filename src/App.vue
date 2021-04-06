@@ -29,136 +29,134 @@
 </template>
 
 <script>
-import random from './utils/random';
+  import random from './utils/random';
 
-import GridBlock from './components/GridBlock';
-import TileBlock from './components/TileBlock';
-import HowToPlay from './components/HowToPlay';
-import TilesPercentage from './components/TilesPercentage';
+  import GridBlock from '@components/GridBlock';
+  import TileBlock from '@components/TileBlock';
+  import HowToPlay from '@components/HowToPlay';
+  import TilesPercentage from '@components/TilesPercentage';
 
-export default {
-  name: 'App',
+  export default {
+    name: 'App',
 
-  components: {
-    GridBlock,
-    TileBlock,
-    HowToPlay,
-    TilesPercentage
-  },
-
-  data() {
-    return {
-      tiles: [],
-      tilesCount: 25,
-      gameRunning: false,
-      currentSequence: [],
-      hideHowToPlay: false,
-      tilesShowSequence: null,
-      currentSequenceLength: 0,
-      grid_areas: ['a', 'b', 'c', 'd', 'e']
-    };
-  },
-
-  methods: {
-    playGame (index) {
-      const { grid_areas } = this;
-
-      this.gameRunning = grid_areas[index] === 'e';
+    components: {
+      GridBlock,
+      TileBlock,
+      HowToPlay,
+      TilesPercentage
     },
 
-    populateTiles () {
-      const { tilesCount } = this;
-
-      this.tiles = Array.from({ length: tilesCount }, (_, i) => ({
-        index: i, active: 0
-      }));
+    data() {
+      return {
+        tiles: [],
+        tilesCount: 25,
+        gameRunning: false,
+        currentSequence: [],
+        hideHowToPlay: false,
+        tilesShowSequence: null,
+        currentSequenceLength: 0,
+        grid_areas: ['a', 'b', 'c', 'd', 'e']
+      };
     },
 
-    toggleHTP () {
-      const { hideHowToPlay, increaseCurrentSequenceLength } = this;
+    methods: {
+      playGame (index) {
+        const { grid_areas } = this;
 
-      this.hideHowToPlay = !hideHowToPlay;
+        this.gameRunning = grid_areas[index] === 'e';
+      },
 
-      increaseCurrentSequenceLength();
-    },
+      populateTiles () {
+        const { tilesCount } = this;
 
-    increaseCurrentSequenceLength () {
-      this.currentSequenceLength++;
-    },
+        this.tiles = Array.from({ length: tilesCount }, (_, i) => ({
+          index: i, active: 0
+        }));
+      },
 
-    generateNewSequence (length) {
-      const { tilesCount } = this;
+      toggleHTP () {
+        const { hideHowToPlay, increaseCurrentSequenceLength } = this;
 
-      return Array.from({ length }, () => random(tilesCount));
-    },
+        this.hideHowToPlay = !hideHowToPlay;
 
-    clearPreviousSequence () {
-      this.currentSequence = [];
-    },
+        increaseCurrentSequenceLength();
+      },
 
-    startShowTilesSequence () {
-      let currIndex = 0;
+      increaseCurrentSequenceLength () {
+        this.currentSequenceLength++;
+      },
 
-      const { currentSequence, currentSequenceLength, stopShowTilesSequence, tiles } = this;
+      generateNewSequence (length) {
+        const { tilesCount } = this;
 
-      this.tilesShowSequence = setInterval(() => {
-        if (currIndex >= currentSequenceLength) {
-          return stopShowTilesSequence();
-        }
+        return Array.from({ length }, () => random(tilesCount));
+      },
 
-        let currTile = currentSequence[currIndex++];
+      clearPreviousSequence () {
+        this.currentSequence = [];
+      },
 
-        tiles[currTile].active = 1;
-      }, 1000);
-    },
+      startShowTilesSequence () {
+        let currIndex = 0;
 
-    stopShowTilesSequence () {
-      this.clearPreviousSequence();
-      clearInterval(this.tilesShowSequence);
+        const { currentSequence, currentSequenceLength, stopShowTilesSequence, tiles } = this;
 
-      setTimeout(() => this.increaseCurrentSequenceLength(), 3000);
-    },
+        this.tilesShowSequence = setInterval(() => {
+          if (currIndex >= currentSequenceLength) {
+            return stopShowTilesSequence();
+          }
 
-    tileReceiveAClick (index) {
-      console.log(index);
-    }
-  },
+          let currTile = currentSequence[currIndex++];
 
-  computed: {
-    runningClass () {
-      const { gameRunning } = this;
+          tiles[currTile].active = 1;
+        }, 1000);
+      },
 
-      return { gameRunning };
-    },
+      stopShowTilesSequence () {
+        this.clearPreviousSequence();
+        clearInterval(this.tilesShowSequence);
 
-    randomTileIndex () {
-      const { tilesCount } = this;
+        setTimeout(() => this.increaseCurrentSequenceLength(), 3000);
+      },
 
-      return random(0, tilesCount);
-    }
-  },
-
-  mounted() {
-    this.populateTiles();
-  },
-
-  watch: {
-    currentSequenceLength (current) {
-      if (current) {
-        this.currentSequence = this.generateNewSequence(current);
+      tileReceiveAClick (index) {
+        console.log(index);
       }
     },
 
-    currentSequence (arr) {
-      arr.length && this.startShowTilesSequence();
+    computed: {
+      runningClass () {
+        const { gameRunning } = this;
+
+        return { gameRunning };
+      },
+
+      randomTileIndex () {
+        const { tilesCount } = this;
+
+        return random(0, tilesCount);
+      }
+    },
+
+    mounted() {
+      this.populateTiles();
+    },
+
+    watch: {
+      currentSequenceLength (current) {
+        if (current) {
+          this.currentSequence = this.generateNewSequence(current);
+        }
+      },
+
+      currentSequence (arr) {
+        arr.length && this.startShowTilesSequence();
+      }
     }
   }
-}
 </script>
 
 <style scoped lang="scss">
-  @import '../public/assets/scss/global.scss';
-
   #app {
     width: 90%;
     height: 400px;
@@ -174,7 +172,7 @@ export default {
       padding: 4px;
       display: grid;
       grid-gap: 4px;
-      grid-template-areas: 
+      grid-template-areas:
         'A A A A B B'
         'A A A A B B'
         'D D E E B B'

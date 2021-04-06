@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0 none;
+  list-style: none;
+  overflow: hidden;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+:root {
+  --background-box-color: #52233f;
+  --background-box-color2: #eec07c;
+  --background-final-color: #51213f;
+  --background-initial-color: #bd6772;
+}
+
+html,
+body {
+  height: 100%;
+  font-size: 60%;
+  position: relative;
+}
+
+body {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: #51213f;
+  background-image: linear-gradient(to bottom left, #bd6772 40%, #51213f);
+}
