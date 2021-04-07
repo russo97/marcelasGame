@@ -1,17 +1,13 @@
 <template>
-  <div
-    :class="area"
-    class="screen-option"
-    @click="$emit('play')"
-    :style="backgroundImage">
-    <span v-if="area === 'e'" :style="heartBackground">
+  <div class="screen-option" :class="area" :style="backgroundImage">
+    <span v-if="clickable" :style="heartBackground">
       Play
     </span>
   </div>
 </template>
 
 <script>
-export default {
+  export default {
     name: 'GridBlock',
 
     props: {
@@ -34,9 +30,13 @@ export default {
         return {
           backgroundImage: `url(${require('@images/heartbg.jpg')})`
         }
+      },
+
+      clickable () {
+        return this.area === 'e';
       }
     }
-}
+  }
 </script>
 
 <style lang="scss">
@@ -59,8 +59,8 @@ export default {
       background-position: 52% center;
 
       &::before {
-        bottom: 10px;
-        right: -35px;
+        right: 3.75rem;
+        bottom: -1.25rem;
         transform: rotate(20deg);
       }
     }
@@ -75,8 +75,8 @@ export default {
       background-position: 17% center;
 
       &::before {
-        top: 30px;
-        left: -45px;
+        top: -25px;
+        left: 15px;
         transform: rotate(-20deg);
       }
     }
@@ -84,14 +84,15 @@ export default {
     &.e {
       grid-area: E;
       cursor: pointer;
-      background-size: 0px;
+      background-size: 0rem;
     }
 
     &.b::before,
     &.d::before {
+      z-index: 2;
       content: '';
-      width: 50px;
-      height: 50px;
+      width: 3.125rem;
+      height: 3.125rem;
       position: absolute;
       background-size: cover;
       background-position: center;

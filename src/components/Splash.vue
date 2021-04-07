@@ -32,9 +32,9 @@
   #screen {
     width: 100%;
     height: 100%;
-    padding: 4px;
     display: grid;
-    grid-gap: 4px;
+    padding: .25rem;
+    grid-gap: .25rem;
     grid-template-areas:
       'A A A A B B'
       'A A A A B B'
@@ -45,8 +45,8 @@
     transition: all 400ms ease;
     backface-visibility: hidden;
     transform-style: preserve-3d;
-    grid-auto-rows: minmax(0px, 100%);
-    grid-auto-columns: minmax(0px, 100%);
+    grid-auto-rows: minmax(0rem, 100%);
+    grid-auto-columns: minmax(0rem, 100%);
     background-color: var(--background-box-color2);
 
     &.gameRunning {

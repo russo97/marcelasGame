@@ -24,8 +24,8 @@
 
 <style lang="scss">
   #playingArea {
-    top: 0px;
-    left: 0px;
+    top: 0rem;
+    left: 0rem;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -40,9 +40,9 @@
 
     .playingSpacer {
       display: grid;
-      grid-gap: 3px;
-      width: calc(100% - 6px);
-      height: calc(100% - 6px);
+      grid-gap: .1875rem;
+      width: calc(100% - .375rem);
+      height: calc(100% - .375rem);
       grid-template: repeat(5, 1fr) / repeat(5, 1fr);
     }
   }

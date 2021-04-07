@@ -67,8 +67,8 @@
     &::before {
       top: 50%;
       left: 50%;
-      width: 0px;
-      height: 0px;
+      width: 0rem;
+      height: 0rem;
     }
 
     &::after {

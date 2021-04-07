@@ -8,38 +8,29 @@
         sua mente e chegue o mais longe que puder.
       </p>
 
-      <button
-        @click="readyToPlay">estou pronto &gt;</button>
+      <button>estou pronto &gt;</button>
     </fieldset>
   </div>
 </template>
 
 <script>
   export default {
-    name: "HowToPlay",
-
-    props: ["playing"],
-
-    methods: {
-      readyToPlay () {
-        this.$emit('readytoplay');
-      }
-    }
+    name: "HowToPlay"
   }
 </script>
 
 <style scoped lang="scss">
   #howtoplay {
-    top: 0px;
-    left: 0px;
+    top: 0rem;
+    left: 0rem;
     opacity: 1;
     width: 100%;
     height: 100%;
     position: absolute;
     @extend %flex-center;
+    backface-visibility: hidden;
     transition: transform 400ms ease;
     background-color: rgba(0, 0, 0, 0.7);
-    backface-visibility: hidden;
 
     &.hide {
       transform: rotateY(-180deg);
@@ -53,8 +44,8 @@
       legend {
         color: #fff;
         font-size: 20pt;
-        padding: 5px 10px;
-        letter-spacing: 3px;
+        letter-spacing: .1875rem;
+        padding: .3125rem .625rem;
         text-transform: uppercase;
         font-family: "Amatic SC", cursive;
       }
@@ -63,11 +54,10 @@
         color: #fff;
         font-size: 12pt;
         text-indent: 1em;
-        margin-top: 15px;
-        padding: 15px 5px;
         line-height: 1.5em;
         text-align: justify;
-        // text-transform: uppercase;
+        margin-top: .9375rem;
+        padding: .9375rem .3125rem;
         font-family: 'Overlock', cursive;
       }
 
@@ -77,10 +67,10 @@
         float: right;
         color: #fff;
         cursor: pointer;
-        background: none;
         font-size: 13pt;
-        margin-top: 15px;
-        letter-spacing: 1px;
+        background: none;
+        margin-top: .9375rem;
+        letter-spacing: .0625rem;
         font-family: "Amatic SC", cursive;
       }
     }
