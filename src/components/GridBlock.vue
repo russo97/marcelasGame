@@ -103,8 +103,8 @@
     span {
       width: 100%;
       height: 100%;
-      font-size: 5rem;
       color: transparent;
+      font-size: 3.125rem;
       @extend %flex-center;
       background-position: center;
       background-repeat: no-repeat;
