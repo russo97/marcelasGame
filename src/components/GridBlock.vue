@@ -23,8 +23,10 @@ export default {
 
     computed: {
       backgroundImage () {
+        const area = this.area == 'e' ? 'd' : this.area;
+
         return {
-          backgroundImage: `url(${require('@images/profile_pic_' + this.area + '.jpg')})`
+          backgroundImage: `url(${require('@images/profile_pic_' + area + '.jpg')})`
         }
       },
 
@@ -56,11 +58,11 @@ export default {
       grid-area: B;
       background-position: 52% center;
 
-      // &::before {
-      //   bottom: 10px;
-      //   right: -35px;
-      //   transform: rotate(20deg);
-      // }
+      &::before {
+        bottom: 10px;
+        right: -35px;
+        transform: rotate(20deg);
+      }
     }
 
     &.c {
@@ -72,11 +74,11 @@ export default {
       grid-area: D;
       background-position: 17% center;
 
-      // &::before {
-      //   top: 30px;
-      //   left: -45px;
-      //   transform: rotate(-20deg);
-      // }
+      &::before {
+        top: 30px;
+        left: -45px;
+        transform: rotate(-20deg);
+      }
     }
 
     &.e {
@@ -85,17 +87,17 @@ export default {
       background-size: 0px;
     }
 
-    // &.b::before,
-    // &.d::before {
-    //   content: '';
-    //   width: 50px;
-    //   height: 50px;
-    //   position: absolute;
-    //   background-size: cover;
-    //   background-position: center;
-    //   background-repeat: no-repeat;
-    //   // background-image: url('../../assets/images/heart_icon.png');
-    // }
+    &.b::before,
+    &.d::before {
+      content: '';
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('../assets/images/heart_icon.png');
+    }
 
     span {
       width: 100%;

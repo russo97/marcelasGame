@@ -1,5 +1,5 @@
 <template>
-  <div class="playingBlock" :class="{ showing }" @click="tileClick">
+  <div class="playingBlock" :class="{ showing }">
     <!-- {{ index }} -->
   </div>
 </template>
@@ -17,25 +17,9 @@
     },
 
     methods: {
-      tileClick () {
-        this.$emit('tileclick', this.index);
-      }
     },
 
     watch: {
-      showing (curr) {
-        if (curr) {
-          setTimeout(() => this.showing = false, 500);
-        }
-      },
-
-      active (curr) {
-        if (curr) {
-          this.showing = curr;
-          
-          this.$emit('input', 0);
-        }
-      }
     }
   }
 </script>
