@@ -57,12 +57,6 @@
     &.b {
       grid-area: B;
       background-position: 52% center;
-
-      &::before {
-        right: 3.75rem;
-        bottom: -1.25rem;
-        transform: rotate(20deg);
-      }
     }
 
     &.c {
@@ -73,31 +67,12 @@
     &.d {
       grid-area: D;
       background-position: 17% center;
-
-      &::before {
-        top: -25px;
-        left: 15px;
-        transform: rotate(-20deg);
-      }
     }
 
     &.e {
       grid-area: E;
       cursor: pointer;
       background-size: 0rem;
-    }
-
-    &.b::before,
-    &.d::before {
-      z-index: 2;
-      content: '';
-      width: 3.125rem;
-      height: 3.125rem;
-      position: absolute;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-image: url('../assets/images/heart_icon.png');
     }
 
     span {
