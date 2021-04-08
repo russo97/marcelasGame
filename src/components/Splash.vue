@@ -1,8 +1,7 @@
 <template>
-  <div id="screen" class="screen">
+  <div id="screen" class="screen" :class="{ gameRunning: playing }">
     <GridBlock
       :key="curr_word"
-      @play="playGame(index)"
       :area="grid_areas[index]"
       v-for="(curr_word, index) in grid_areas" />
     
@@ -12,6 +11,8 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex';
+
   import GridBlock from "@components/GridBlock";
 
   export default {
@@ -26,6 +27,10 @@
     },
 
     computed: {
+      ...mapState([
+        'playing'
+      ]),
+
       heartIcon () {
         return {
           backgroundImage: `url(${require('@images/heart_icon.png')})`

@@ -1,12 +1,14 @@
 <template>
   <div class="screen-option" :class="area" :style="backgroundImage">
-    <span v-if="clickable" :style="heartBackground">
+    <span v-if="clickable" :style="heartBackground" @click="playGame">
       Play
     </span>
   </div>
 </template>
 
 <script>
+  import { mapMutations } from 'vuex';
+
   export default {
     name: 'GridBlock',
 
@@ -15,6 +17,18 @@
         type: String,
         required: true
       }
+    },
+
+    methods: {
+      playGame () {
+        const { area, SET_PLAYING } = this;
+
+        SET_PLAYING(area === 'e');
+      },
+
+      ...mapMutations([
+        'SET_PLAYING'
+      ]),
     },
 
     computed: {

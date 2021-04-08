@@ -1,5 +1,5 @@
 <template>
-  <div id="playingArea">
+  <div id="playingArea" :class="{ gameRunning: playing }">
     <div class="playingSpacer">
       <TileBlock />
     </div>
@@ -9,11 +9,19 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex';
+
   import TileBlock from "@components/TileBlock";
   import TilesPercentage from "@components/TilesPercentage";
 
   export default {
     name: "PlayingArea",
+
+    computed: {
+      ...mapState([
+        'playing'
+      ])
+    },
 
     components: {
       TileBlock,
