@@ -1,7 +1,7 @@
 <template>
   <div id="playingArea" :class="{ gameRunning: playing }">
     <div class="playingSpacer">
-      <TileBlock />
+      <TileBlock :key="tile" v-for="tile in tiles" />
     </div>
 
     <TilesPercentage />
@@ -19,6 +19,7 @@
 
     computed: {
       ...mapState([
+        'tiles',
         'playing'
       ])
     },
