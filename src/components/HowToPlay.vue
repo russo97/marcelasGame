@@ -1,5 +1,5 @@
 <template>
-  <div id="howtoplay" :class="{ hide: !playing }">
+  <div id="howtoplay" :class="{ hide: !playing || !visible }">
     <fieldset>
       <legend>Como jogar</legend>
 
@@ -8,14 +8,34 @@
         sua mente e chegue o mais longe que puder.
       </p>
 
-      <button>estou pronto &gt;</button>
+      <button @click="toggleVisibility">estou pronto &gt;</button>
     </fieldset>
   </div>
 </template>
 
 <script>
+  import { mapState } from 'vuex';
+
   export default {
-    name: "HowToPlay"
+    name: "HowToPlay",
+
+    data () {
+      return {
+        visible: true
+      }
+    },
+
+    computed: {
+      ...mapState([
+        'playing'
+      ])
+    },
+
+    methods: {
+      toggleVisibility () {
+        this.visible = !this.visible;
+      }
+    }
   }
 </script>
 
