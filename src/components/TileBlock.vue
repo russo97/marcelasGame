@@ -1,5 +1,5 @@
 <template>
-  <div class="playingBlock" :class="{ showing }">
+  <div class="playingBlock" @click="toggle" :class="{ showing }">
     <!-- {{ index }} -->
   </div>
 </template>
@@ -17,6 +17,13 @@
     },
 
     methods: {
+      toggle () {
+        this.showing = true;
+
+        setTimeout(() => {
+          this.showing = false;
+        }, 1000);
+      }
     },
 
     watch: {
@@ -28,58 +35,12 @@
 	.playingBlock {
     cursor: pointer;
     position: relative;
-    background: #b15166;
+    transition: .4s ease-in-out;
+    background-color: #b15166;
     -webkit-tap-highlight-color: transparent;
 
     &.showing {
-      z-index: 10;
-
-      &::before {
-        top: -50%;
-        left: -50%;
-        opacity: .3;
-        width: 200%;
-        height: 200%;
-        animation: 500ms colorchange forwards;
-      }
-
-      &::after {
-        top: 50%;
-        left: 50%;
-        opacity: .3;
-        width: 0%;
-        height: 0%;
-        animation: 800ms colorchange forwards;
-      }
+      background-color: var(--background-box-color);
     }
-
-    &::before,
-    &::after {
-      content: "";
-      opacity: 0;
-      position: absolute;
-      pointer-events: none;
-      background-color: #fff;
-      transition: all 300ms ease;
-      border-radius: 50%;
-    }
-
-    &::before {
-      top: 50%;
-      left: 50%;
-      width: 0rem;
-      height: 0rem;
-    }
-
-    &::after {
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-    }
-  }
-
-  @include keyframes (colorchange) {
-    100% { opacity: 0; }
   }
 </style>
