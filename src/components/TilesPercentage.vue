@@ -5,23 +5,29 @@
         :key="item"
         :style="width"
         class="percentage_bar"
-        :class="{ filled: item <= current }"
-        v-for="item in total">
+        :class="{ filled: item <= tilesCount }"
+        v-for="item in tilesCount">
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+
   export default {
     name: 'TilesPercentage',
 
     computed: {
+      ...mapGetters([
+        'tilesCount'
+      ]),
+
       width () {
-        const { total } = this;
+        const { tilesCount } = this;
 
         return {
-          width: `${100 / total}%`
+          width: `${100 / tilesCount}%`
         };
       }
     }
