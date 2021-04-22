@@ -8,32 +8,43 @@
         sua mente e chegue o mais longe que puder.
       </p>
 
-      <button @click="toggleVisibility">estou pronto &gt;</button>
+      <button @click="startGame">estou pronto &gt;</button>
     </fieldset>
   </div>
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+  import { mapState, mapActions } from 'vuex';
+
+  import delay from '../utils/delay';
 
   export default {
     name: "HowToPlay",
 
-    data () {
-      return {
-        visible: true
+    computed: {
+      ...mapState([
+        'level',
+        'playing'
+      ]),
+
+      visible () {
+        return this.level === 0;
       }
     },
 
-    computed: {
-      ...mapState([
-        'playing'
-      ])
-    },
-
     methods: {
+      ...mapActions([
+        'incrementLevel'
+      ]),
+
       toggleVisibility () {
         this.visible = !this.visible;
+      },
+
+      async startGame () {
+        const { incrementLevel } = this;
+
+        await delay(500).then(incrementLevel);
       }
     }
   }
