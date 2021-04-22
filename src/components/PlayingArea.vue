@@ -1,7 +1,9 @@
 <template>
   <div id="playingArea" :class="{ gameRunning: playing }">
     <div class="playingSpacer">
-      <TileBlock :key="tile" v-for="tile in tiles" />
+      <TileBlock
+        :key="tile"
+        v-for="tile in tiles" />
     </div>
 
     <TilesPercentage />
@@ -9,7 +11,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+  import { mapState, mapActions } from 'vuex';
 
   import TileBlock from "@components/TileBlock";
   import TilesPercentage from "@components/TilesPercentage";
@@ -17,16 +19,34 @@
   export default {
     name: "PlayingArea",
 
+    methods: {
+      ...mapActions([
+        'populateComputedSequence'
+      ])
+    },
+
     computed: {
       ...mapState([
         'tiles',
-        'playing'
+        'level',
+        'playing',
+        'computedSequence'
       ])
     },
 
     components: {
       TileBlock,
       TilesPercentage
+    },
+
+    watch: {
+      level (val) {
+        const { populateComputedSequence } = this;
+
+        val > 0
+          ? populateComputedSequence()
+          : null;
+      }
     }
   }
 </script>
