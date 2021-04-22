@@ -1,5 +1,6 @@
 
 const state = {
+  level: 0,
   playing: false,
   userSequence: [],
   computedSequence: [],
