@@ -5,6 +5,10 @@ const incrementLevel = ({ commit, state }) => {
   commit('SET_LEVEL', state.level + 1);
 };
 
+const setUserCanPlayProperty = ({ commit }, payload) => {
+  commit('SET_USER_CAN_PLAY_PROPERTY', payload);
+};
+
 const populateComputedSequence = ({ commit, state }) => {
   const { level } = state;
 
@@ -18,5 +22,6 @@ const populateComputedSequence = ({ commit, state }) => {
 
 export default {
   incrementLevel,
+  setUserCanPlayProperty,
   populateComputedSequence
 };

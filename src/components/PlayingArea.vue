@@ -30,11 +30,12 @@
 
     methods: {
       ...mapActions([
+        'setUserCanPlayProperty',
         'populateComputedSequence'
       ]),
 
       async computedAnimation (index = 0) {
-        const { computedSequence, computedAnimation } = this;
+        const { computedSequence, computedAnimation, setUserCanPlayProperty } = this;
 
         const currentTile = computedSequence[index];
 
@@ -44,7 +45,11 @@
           this.highlightIndex = null;
 
           delay(250).then(() => {
-            computedSequence[index + 1] && computedAnimation(index + 1);
+            if (computedSequence[index + 1]) {
+              return computedAnimation(index + 1);
+            }
+
+            setUserCanPlayProperty(!0);
           });
         });
       }

@@ -1,10 +1,12 @@
 <template>
-  <div class="playingBlock" @click="toggle" :class="{ showing: highlight }">
+  <div class="playingBlock" @click="handleTileClick" :class="{ showing: highlight }">
     <!-- {{ index }} -->
   </div>
 </template>
 
 <script>
+  import { mapState } from 'vuex';
+
   export default {
     name: 'TileBlock',
 
@@ -15,23 +17,15 @@
       }
     },
 
-    data () {
-      return {
-        showing: false
-      }
+    computed: {
+      ...mapState([
+        'canUserPlay'
+      ])
     },
 
     methods: {
-      toggle () {
-        this.showing = true;
-
-        setTimeout(() => {
-          this.showing = false;
-        }, 1000);
+      handleTileClick () {
       }
-    },
-
-    watch: {
     }
   }
 </script>
