@@ -1,5 +1,5 @@
 <template>
-  <div class="playingBlock" @click="toggle" :class="{ showing }">
+  <div class="playingBlock" @click="toggle" :class="{ showing: highlight }">
     <!-- {{ index }} -->
   </div>
 </template>
@@ -8,7 +8,12 @@
   export default {
     name: 'TileBlock',
 
-    props: ['index', 'active'],
+    props: {
+      highlight: {
+        type: Boolean,
+        required: true
+      }
+    },
 
     data () {
       return {

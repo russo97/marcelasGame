@@ -5,8 +5,8 @@
         :key="item"
         :style="width"
         class="percentage_bar"
-        :class="{ filled: item <= tilesCount }"
-        v-for="item in tilesCount">
+        :class="{ filled: item <= userSequenceCount }"
+        v-for="item in computedSequenceCount">
       </div>
     </div>
   </div>
@@ -20,14 +20,15 @@
 
     computed: {
       ...mapGetters([
-        'tilesCount'
+        'userSequenceCount',
+        'computedSequenceCount'
       ]),
 
       width () {
-        const { tilesCount } = this;
+        const { computedSequenceCount } = this;
 
         return {
-          width: `${100 / tilesCount}%`
+          width: `${100 / (computedSequenceCount || 1)}%`
         };
       }
     }

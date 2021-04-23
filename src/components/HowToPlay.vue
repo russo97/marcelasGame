@@ -37,10 +37,6 @@
         'incrementLevel'
       ]),
 
-      toggleVisibility () {
-        this.visible = !this.visible;
-      },
-
       async startGame () {
         const { incrementLevel } = this;
 
