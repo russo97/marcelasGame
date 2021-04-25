@@ -34,22 +34,18 @@
         'populateComputedSequence'
       ]),
 
-      async computedAnimation (index = 0) {
-        const { computedSequence, computedAnimation, setUserCanPlayProperty } = this;
-
-        const currentTile = computedSequence[index];
-
-        this.highlightIndex = currentTile.tile;
+      async computedAnimation (index = 0, sequence) {
+        this.highlightIndex = sequence[index].tile;
 
         await delay(600).then(() => {
-          this.highlightIndex = null;
-
           delay(250).then(() => {
-            if (computedSequence[index + 1]) {
-              return computedAnimation(index + 1);
+            const nextIndex = index + 1;
+
+            if (sequence[nextIndex]) {
+              return this.computedAnimation(nextIndex, sequence);
             }
 
-            setUserCanPlayProperty(!0);
+            this.setUserCanPlayProperty(!0);
           });
         });
       }
@@ -80,7 +76,13 @@
 
       computedSequence (computed) {
         if (computed.length > 0) {
-          delay(1000).then(() => this.computedAnimation() );
+          delay(1000).then(() => this.computedAnimation(0, computed) );
+        }
+      },
+
+      highlightIndex (value) {
+        if (value) {
+          delay(600).then(() => this.highlightIndex = null);
         }
       }
     }
