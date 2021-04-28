@@ -5,12 +5,17 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+  import { mapState, mapActions } from 'vuex';
 
   export default {
     name: 'TileBlock',
 
     props: {
+      tile: {
+        type: Number,
+        required: true
+      },
+
       highlight: {
         type: Boolean,
         required: true
@@ -24,7 +29,14 @@
     },
 
     methods: {
+      ...mapActions([
+        'handleTileBlockClick'
+      ]),
+
       handleTileClick () {
+        if (!this.canUserPlay) return;
+
+        this.handleTileBlockClick(this.tile);
       }
     }
   }

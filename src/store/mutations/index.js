@@ -19,10 +19,15 @@ const SET_USER_CAN_PLAY_PROPERTY = (state, payload) => {
   state.canUserPlay = payload;
 };
 
+const HANDLE_TILE_BLOCK_CLICK = (state, payload) => {
+  state.userSequence = payload;
+};
+
 export default {
   SET_LEVEL,
   SET_PLAYING,
   SET_LAST_OPERATION,
+  HANDLE_TILE_BLOCK_CLICK,
   SET_USER_CAN_PLAY_PROPERTY,
   POPULATE_COMPUTED_SEQUENCE
 }

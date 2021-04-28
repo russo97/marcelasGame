@@ -3,6 +3,7 @@
     <div class="playingSpacer">
       <TileBlock
         :key="tile"
+        :tile="tile"
         :highlight="highlightIndex === tile"
         v-for="tile in tiles" />
     </div>
@@ -30,6 +31,8 @@
 
     methods: {
       ...mapActions([
+        'incrementLevel',
+        'clearUserSequence',
         'setUserCanPlayProperty',
         'populateComputedSequence'
       ]),
@@ -56,8 +59,21 @@
         'tiles',
         'level',
         'playing',
+        'userSequence',
         'computedSequence'
-      ])
+      ]),
+
+      entriesAreTheSameLength () {
+        const { userSequence, computedSequence } = this;
+
+        return userSequence.length === computedSequence.length && userSequence.length > 0;
+      },
+
+      entriesAreTheSame () {
+        const { userSequence, computedSequence } = this;
+
+        return userSequence.join('') === computedSequence.map(computed => computed.tile).join('');
+      }
     },
 
     components: {
@@ -83,6 +99,18 @@
       highlightIndex (value) {
         if (value) {
           delay(600).then(() => this.highlightIndex = null);
+        }
+      },
+
+      entriesAreTheSameLength (length) {
+        const { entriesAreTheSame, clearUserSequence } = this;
+
+        if (!this.userSequence.length) return;
+
+        if (length && entriesAreTheSame) {
+          clearUserSequence();
+
+          return this.incrementLevel();
         }
       }
     }
