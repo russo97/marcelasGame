@@ -24,7 +24,8 @@
     computed: {
       ...mapState([
         'level',
-        'playing'
+        'playing',
+        'lastOperation'
       ]),
 
       visible () {
@@ -34,13 +35,18 @@
 
     methods: {
       ...mapActions([
-        'incrementLevel'
+        'incrementLevel',
+        'setLastOperation'
       ]),
 
       async startGame () {
-        const { incrementLevel } = this;
+        const { incrementLevel, setLastOperation } = this;
 
-        await delay(500).then(incrementLevel);
+        if (this.lastOperation !== 'LEVEL__INCREMENT') {
+          setLastOperation('LEVEL__INCREMENT');
+
+          await delay(500).then(incrementLevel);
+        }
       }
     }
   }
