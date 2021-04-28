@@ -6,6 +6,7 @@ const state = {
   timesPerformed: 0,
   canUserPlay: false,
   computedSequence: [],
+  lastOperation: null,
   tiles: Array.from({ length: 25 }, (_, i) => i + 1),
 };
 

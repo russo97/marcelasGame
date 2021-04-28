@@ -9,6 +9,10 @@ const setUserCanPlayProperty = ({ commit }, payload) => {
   commit('SET_USER_CAN_PLAY_PROPERTY', payload);
 };
 
+const setLastOperation = ({ commit }, payload) => {
+  commit('SET_LAST_OPERATION', payload);
+};
+
 const populateComputedSequence = ({ commit, state }) => {
   const { level } = state;
 
@@ -22,6 +26,7 @@ const populateComputedSequence = ({ commit, state }) => {
 
 export default {
   incrementLevel,
+  setLastOperation,
   setUserCanPlayProperty,
   populateComputedSequence
 };
