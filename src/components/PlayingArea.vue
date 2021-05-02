@@ -102,15 +102,13 @@
         }
       },
 
-      entriesAreTheSameLength (length) {
+      async entriesAreTheSameLength (length) {
         const { entriesAreTheSame, clearUserSequence } = this;
 
-        if (!this.userSequence.length) return;
-
-        if (length && entriesAreTheSame) {
-          clearUserSequence();
-
-          return this.incrementLevel();
+        if (length > 0 && entriesAreTheSame) {
+          delay(2000)
+            .then(clearUserSequence)
+            .then(this.incrementLevel);
         }
       }
     }
