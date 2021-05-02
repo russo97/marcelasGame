@@ -2,33 +2,34 @@
   <div class="user_percentage">
     <div class="percentage_box">
       <div
-        :key="item"
         :style="width"
-        class="percentage_bar"
-        :class="{ filled: item <= userSequenceCount }"
-        v-for="item in computedSequenceCount">
+        class="percentage_bar filled">
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapState, mapGetters } from 'vuex';
 
   export default {
     name: 'TilesPercentage',
 
     computed: {
+      ...mapState([
+        'level'
+      ]),
+
       ...mapGetters([
         'userSequenceCount',
         'computedSequenceCount'
       ]),
 
       width () {
-        const { computedSequenceCount } = this;
+        const { userSequenceCount, computedSequenceCount } = this;
 
         return {
-          width: `${100 / (computedSequenceCount || 1)}%`
+          width: `${userSequenceCount / computedSequenceCount * 100}%`
         };
       }
     }
@@ -49,7 +50,10 @@
       position: relative;
       background: #51213f;
       @include border-radius(.1875rem);
-      @extend %flex-center-space-evenly;
+      // @extend %flex-center-space-evenly;
+
+      display: flex;
+      justify-content: flex-start;
 
       .percentage_bar {
         top: 0rem;
